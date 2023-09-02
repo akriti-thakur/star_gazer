@@ -4,29 +4,29 @@ include("navbar.php");
 
 if($_SERVER["REQUEST_METHOD"] == "POST") 
 {
-    include ("connection.php");
+    include "databases/connection.php";
     $pass=$_POST["password"];
     $email=$_POST["email"];
-    $sql="SELECT email,pass FROM users where email='$email' && password='$pass'";
-    $result=mysqli_query($conn,$sql);
-    if(mysqli_num_rows($result)==1){
-        session_start();
-        $_SESSION["user"]=$email;
+    $sql="SELECT email,password FROM users where email='$email' && password='$pass'";
+    $result=mysqli_query($lol,$sql);
+    if(mysqli_num_rows($result)==1)
+    {
         
 
-    echo "<script>alert('Login Successful')</script>";   
-}
-else{
+        echo "<script>alert('Login Successful')</script>";   
+     }
+   else
+   {
+    
     echo "<script>alert('Login failed')</script>";   
 
+   }
+
+
+
+
+
 }
-
-
-
-
-
-
-    }
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ else{
 </head>
 <body>
 <div class="container">
-    <form action="login.php" method="POST">
+    <form action="login.php" method=post>
         <div class="form" >
             <h1>LOGIN</h1>
            
@@ -56,7 +56,7 @@ else{
                 <input type="text" id ="password" name="password">
                 <label for="password">Password</label><br>
             </div>
-            <button class="login">login</button>
+            <input type="submit" class="login" value="login">
             <p> don't have a account?<a href="register.php">register</a></p>
         </div>
     </form>

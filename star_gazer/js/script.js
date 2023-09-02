@@ -1,13 +1,25 @@
-gsap.to("#navbar",{
-    backgroundColor:"black",
-    height:"120px",
-    duration:0.5,
-    scrollTrigger:{
-        trigger:"#navbar",
-        scroller:"body",
-        markers:true,
-        start:"top -10%",
-        end:"top -11%",
-        scrub:1
+function updateplanet(clicked){
+
+}
+
+
+
+
+function addplanet(){
+   let name = document.getElementById('name').value;
+  let size = document.getElementById('size').value;
+ let  speed = document.getElementById('speed').value;
+let image= document.getElementById('image').value;
+
+let value="name="+name+"size="+size+"speed"+speed+"image="+image;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("error").innerHTML = this.responseText;
     }
-})
+};
+
+xhttp.open('POST', "planet/addplanet.php", true);
+xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhttp.send(value);
+}

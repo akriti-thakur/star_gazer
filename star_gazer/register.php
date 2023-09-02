@@ -1,36 +1,28 @@
 <?php
 include('navbar.php');
-
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
 
-include("connection.php");
-$name=$_POST("username");
-$email=$_POST("email");
-$age=$_POST("age");
-$pass=$_POST("password");
 
-$sql="SELECT * FROM user WHERE email='$email'";
-$r= mysqli_query($lol,$sql);
-$num = mysqli_num_rows($r); 
+include('databases/connection.php');
 
-if($num>0){
-    echo "<script type='text/javascript'>alert('Email already exists');</script>";
-    }
 
-else{
+$name=$_POST["username"];
+$email=$_POST["email"];
+$age=$_POST["age"];
+$pass=$_POST["password"];
+
 $sql="insert into users(name,email,age,password) values ('$name','$email','$age','$pass')";
 $result=mysqli_query($lol,$sql);
 if(!$result){
-    echo"<script type='text/javascript'>alert('Account is not  added');</script>";
+    echo"<script type='text/javascript'>alert('Account is not  added')</script>";
 }
-
 else{
-    echo"<script type='text/javascript'>alert('Account has been added');</script>";
+    echo"<script type='text/javascript'>alert('Account has been added')</script>";
 }
 
 }
-}
+
 
 
 
@@ -67,7 +59,7 @@ else{
 
     
     <div class="container">
-        <form action="register.php" method="POST">
+        <form action="register.php" method=post>
         <div class="form" >
             <h1>REGISTER</h1>
             <div class="input-box">
